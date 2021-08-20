@@ -1,25 +1,35 @@
+/** @jsxImportSource @emotion/react */
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { css } from '@emotion/react';
+import { Header } from './header';
+import { HomePage } from './Views/HomePage';
+import { fontFamily, fontSize, gray2 } from './Styles';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PlayerPage from './Views/PlayerPage';
+import PlayersPage from './Views/PlayersPage';
+import PlayerCreatePage from './Views/PlayerCreatePage';
+import NotFoundPage from './Views/NotFoundPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div
+        css={css`
+          font-family: ${fontFamily};
+          font-size: ${fontSize};
+          color: ${gray2};
+        `}
+      >
+        <Header />
+        <Routes>
+          <Route path="" element={<HomePage />} />
+          <Route path="Players" element={<PlayersPage />} />
+          <Route path="Player" element={<PlayerPage />} />
+          <Route path="Create" element={<PlayerCreatePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
