@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Page } from './Page';
 import { PageTitle } from './PageTitle';
-import { useParams } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 
 function PlayerPage() {
   interface PlayerDataType {
@@ -13,10 +13,9 @@ function PlayerPage() {
     stats: null;
   }
 
-  const { id } = useParams();
-  //const { id } = route.params;
+  //const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [player, setPlayer] = useState<Array<PlayerDataType>>([]);
+  const [player, setPlayer] = useState<PlayerDataType>();
 
   //Fetch all forms from database
   useEffect(() => {
@@ -31,10 +30,7 @@ function PlayerPage() {
       .then(() => setIsLoading(false));
   }, []);
 
-  console.log(id);
-  console.log(player);
-
-  if (isLoading === true) {
+  if (isLoading === true && !player) {
     return (
       <Page>
         <PageTitle>Loading...</PageTitle>
@@ -43,7 +39,9 @@ function PlayerPage() {
   } else {
     return (
       <Page>
-        <PageTitle>Player Name</PageTitle>
+        <PageTitle>
+          {player?.handle}, {player?.role}
+        </PageTitle>
       </Page>
     );
   }
