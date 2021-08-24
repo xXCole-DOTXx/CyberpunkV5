@@ -1,31 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Page } from './Page';
 import { PageTitle } from './PageTitle';
+import { useParams } from 'react-router-dom';
 
 function PlayerPage() {
+  interface PlayerDataType {
+    id: number;
+    handle: string;
+    role: string;
+    avatar: string;
+    specialAbilities: null;
+    stats: null;
+  }
+
+  const { id } = useParams();
+  //const { id } = route.params;
   const [isLoading, setIsLoading] = useState(false);
-  const [playersData, setPlayersData] = useState([]);
+  const [player, setPlayer] = useState<Array<PlayerDataType>>([]);
 
   //Fetch all forms from database
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://127.0.0.1:5000/forms')
+    fetch('https://localhost:44326/api/Players/1')
       .then((response) => {
         if (response.ok) {
           return response.json();
         }
       })
-      .then((data) => setPlayersData(data))
-      .then(setIsLoading(false));
+      .then((data) => setPlayer(data))
+      .then(() => setIsLoading(false));
   }, []);
 
-  return (
-    <Page>
-      <div style={{ padding: 20 }}>
+  console.log(id);
+  console.log(player);
+
+  if (isLoading === true) {
+    return (
+      <Page>
+        <PageTitle>Loading...</PageTitle>
+      </Page>
+    );
+  } else {
+    return (
+      <Page>
         <PageTitle>Player Name</PageTitle>
-      </div>
-    </Page>
-  );
+      </Page>
+    );
+  }
 }
 
 export default PlayerPage;

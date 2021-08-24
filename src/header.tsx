@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { fontFamily, fontSize, gray1, gray2, gray5 } from './Styles';
 import { Link } from 'react-router-dom';
-//import { MaterialCommunityIcons } from 'react-native-vector-icons';
+//import MaterialCommunityIcons from 'react-native-vector-icons';
 
 export const Header = () => (
   <div
@@ -18,7 +18,7 @@ export const Header = () => (
       padding: 10px 20px;
       background-color: #fff;
       border-bottom: 1px solid ${gray5};
-      box-shadow: 0 3px 7px 0 rgba(110, 112, 114, 0.21);
+      box-shadow: 0 3px 7px 0 rgba(30, 38, 46, 0.21);
     `}
   >
     <Link
