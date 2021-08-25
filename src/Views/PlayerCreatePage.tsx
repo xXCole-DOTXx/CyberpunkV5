@@ -3,9 +3,20 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { Page } from './Page';
 import { PageTitle } from './PageTitle';
-import { Dropdown } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+
+type FormData = {
+  handle: string;
+  role: string;
+};
 
 function PlayerCreatePage() {
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+  };
+
   return (
     <Page>
       <div>
@@ -18,33 +29,24 @@ function PlayerCreatePage() {
             justify-content: center;
           `}
         >
-          <div
-            css={css`
-              display: flex;
-              margin-bottom: 10px;
-            `}
-          >
-            <PageTitle>Handle: </PageTitle>
-            <input type="text" />
-          </div>
-          <div
-            css={css`
-              display: flex;
-            `}
-          >
-            <PageTitle>Role: </PageTitle>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Dropdown Button
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div
+              css={css`
+                display: flex;
+                margin-bottom: 10px;
+              `}
+            >
+              <PageTitle>Handle: </PageTitle>
+              <input
+                {...register('handle')}
+                type="text"
+                placeholder="Johnny Silverhand"
+              />
+              <PageTitle>Role: </PageTitle>
+              <input {...register('role')} type="text" placeholder="Fixer" />
+              <input type="submit" />
+            </div>
+          </form>
         </div>
       </div>
     </Page>
