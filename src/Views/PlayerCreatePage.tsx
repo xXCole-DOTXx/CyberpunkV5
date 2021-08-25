@@ -11,7 +11,11 @@ type FormData = {
 };
 
 function PlayerCreatePage() {
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
     console.log(data);
@@ -38,12 +42,18 @@ function PlayerCreatePage() {
             >
               <PageTitle>Handle: </PageTitle>
               <input
-                {...register('handle')}
+                {...register('handle', { required: true })}
                 type="text"
                 placeholder="Johnny Silverhand"
               />
+              {errors.handle && <p>Handle is required.</p>}
               <PageTitle>Role: </PageTitle>
-              <input {...register('role')} type="text" placeholder="Fixer" />
+              <input
+                {...register('role', { required: true })}
+                type="text"
+                placeholder="Fixer"
+              />
+              {errors.role && <p>Role is required.</p>}
               <input type="submit" />
             </div>
           </form>
