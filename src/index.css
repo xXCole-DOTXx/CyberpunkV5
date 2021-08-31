@@ -2,3 +2,10 @@ body {
   margin: 0;
   background-color: #f7f8fa;
 }
+
+/* @font-face {
+  font-family: 'CyberpunkRegular';
+  src: local('CyberpunkRegular'),
+    url('./fonts/Cyberpunk-Regular.ttf') format('truetype');
+  font-weight: normal;
+} */

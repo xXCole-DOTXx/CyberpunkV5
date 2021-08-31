@@ -52,7 +52,7 @@ function PlayersPage() {
   };
 
   const handleSelect = (id: number) => {
-    navigate('/Players', {
+    navigate('../Player/' + id, {
       state: {
         userId: id,
       },

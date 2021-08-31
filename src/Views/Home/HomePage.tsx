@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { css } from '@emotion/react';
-import logo from '../assets/cyberpunk.png';
-import { Page } from './Page';
+import logo from '../../assets/cyberpunk.png';
+import { Page } from '../Page';
 import { useNavigate } from 'react-router';
 
 //const navigate = useNavigate(); -- It can't be called on the top or inside?
