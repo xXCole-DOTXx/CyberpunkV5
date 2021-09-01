@@ -27,6 +27,11 @@
   justify-content: space-evenly;
 }
 
+.columnContainers {
+  display: flex;
+  flex-direction: row;
+}
+
 .label {
   color: #d4ffc7;
 }
@@ -34,4 +39,6 @@
 .buttons {
   height: 20px;
   margin-top: 20px;
+  color: #d4ffc7;
+  background: darkslategrey;
 }
