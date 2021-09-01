@@ -4,17 +4,18 @@ body {
 }
 .container {
   width: 100%;
-  background: url('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_51/3436724/201218-cyberpunk-al-1020.jpg');
-  background-repeat: no-repeat;
-  background-size: auto;
-  min-height: 100%;
+  background: url('../../assets/snip2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: #404040;
-  width: 600px;
+  width: 35%;
   height: 100vh;
   min-height: 100%;
 }
@@ -44,10 +45,6 @@ body {
   justify-content: center;
 }
 
-h2 {
-  color: #d4ffc7;
-}
-
-h3 {
+.labels {
   color: #d4ffc7;
 }

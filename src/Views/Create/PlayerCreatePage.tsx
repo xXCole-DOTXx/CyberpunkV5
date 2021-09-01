@@ -3,21 +3,16 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './styles.module.css';
 import { useNavigate } from 'react-router';
-//import S3 from 'react-aws-s3';
+import S3 from 'react-aws-s3-typescript';
+import { config } from '../../config';
 
 type FormData = {
   handle: string;
   role: string;
-  avatar: string;
+  avatar: File;
 };
 
-// const config = {
-//   bucketName: 'cyberpunkv2',
-//   dirName: 'avatars',
-//   region: 'us-east-1',
-//   accessKeyId: 'key',
-//   secretAccessKey: 'key',
-// };
+const ReactS3Client = new S3(config);
 
 function PlayerCreatePage() {
   const {
@@ -30,6 +25,9 @@ function PlayerCreatePage() {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    ReactS3Client.uploadFile(data.avatar, data.handle + Date.now())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
     navigate('../Stats');
   };
 
@@ -38,10 +36,10 @@ function PlayerCreatePage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.body}>
           <div className={styles.title}>
-            <h2>Create New Player</h2>
+            <h2 className={styles.labels}>Create New Player</h2>
           </div>
           <div className={styles.fields}>
-            <h3>Handle: </h3>
+            <h3 className={styles.labels}>Handle: </h3>
             <input
               {...register('handle', { required: true })}
               type="text"
@@ -51,7 +49,7 @@ function PlayerCreatePage() {
             {errors.handle && <p>Handle is required.</p>}
           </div>
           <div className={styles.fields}>
-            <h3>Role: </h3>
+            <h3 className={styles.labels}>Role: </h3>
             <select
               {...register('role', { required: true })}
               className={styles.input}

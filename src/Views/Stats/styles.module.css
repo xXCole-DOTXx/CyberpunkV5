@@ -1,3 +1,37 @@
 .container {
-  background: url('../../assets/stats.jpg');
+  background: url('../../assets/stats2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: #404040;
+  width: 40%;
+  height: 100vh;
+}
+
+.title {
+  color: #d4ffc7;
+  display: flex;
+  justify-content: center;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.label {
+  color: #d4ffc7;
+}
+
+.buttons {
+  height: 20px;
+  margin-top: 20px;
 }
