@@ -10,6 +10,11 @@ import PlayersPage from './Views/PlayersPage';
 import PlayerCreatePage from './Views/Create/PlayerCreatePage';
 import NotFoundPage from './Views/NotFoundPage';
 import StatsPage from './Views/Stats/Stats';
+import { Steps, Step } from 'react-step-builder';
+import SpecialAbilities from './Views/Skills/SpecialAbilities';
+import AttrPage from './Views/Skills/AttrPage';
+import CoolPage from './Views/Skills/CoolPage';
+import SkillsPage from './Views/Skills/Skills';
 
 function App() {
   return (
@@ -28,6 +33,7 @@ function App() {
           <Route path="Player/:id" element={<PlayerPage />} />
           <Route path="Create" element={<PlayerCreatePage />} />
           <Route path="Stats" element={<StatsPage />} />
+          <Route path="Skills" element={<SkillsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

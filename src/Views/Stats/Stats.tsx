@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+
+type FormData = {
+  Int: number;
+  Ref: number;
+  Tech: number;
+  Cool: number;
+  Attr: number;
+  Luck: number;
+  Ma: number;
+  Body: number;
+  Emp: number;
+};
 
 let points = characterRoll();
 function StatsPage() {
@@ -13,242 +27,260 @@ function StatsPage() {
   const [charMa, setMa] = useState(0);
   const [charBody, setBody] = useState(0);
   const [charEmp, setEmp] = useState(0);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const navigate = useNavigate();
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+    navigate('../Skills');
+  };
   return (
     <div className={styles.container}>
       <div className={styles.body}>
-        <h2 className={styles.title}>Stats</h2>
-        <h3 className={styles.title}>Points: {skillPoints}</h3>
-        <div className={styles.columns}>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charInt > 0) {
-                  setInt(charInt - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>INT: {charInt}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charInt <= 9) {
-                  setInt(charInt + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h2 className={styles.title}>Stats</h2>
+          <h3 className={styles.title}>Points: {skillPoints}</h3>
+          <div className={styles.columns}>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charInt > 0) {
+                    setInt(charInt - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>INT: {charInt}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charInt <= 9) {
+                    setInt(charInt + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charAttr > 0) {
+                    setAttr(charAttr - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>ATTR: {charAttr}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charAttr <= 9) {
+                    setAttr(charAttr + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charEmp > 0) {
+                    setEmp(charEmp - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>EMP: {charEmp}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charEmp <= 9) {
+                    setEmp(charEmp + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charAttr > 0) {
-                  setAttr(charAttr - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>ATTR: {charAttr}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charAttr <= 9) {
-                  setAttr(charAttr + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
+          <div className={styles.columns}>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charRef > 0) {
+                    setRef(charRef - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>REF: {charRef}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charRef <= 9) {
+                    setRef(charRef + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charLuck > 0) {
+                    setLuck(charLuck - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>LUCK: {charLuck}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charLuck <= 9) {
+                    setLuck(charLuck + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charCool > 0) {
+                    setCool(charCool - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>Cool: {charCool}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charCool <= 9) {
+                    setCool(charCool + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charEmp > 0) {
-                  setEmp(charEmp - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>EMP: {charEmp}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charEmp <= 9) {
-                  setEmp(charEmp + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
+          <div className={styles.columns}>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charTech > 0) {
+                    setTech(charTech - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>TECH: {charTech}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charTech <= 9) {
+                    setTech(charTech + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charMa > 0) {
+                    setMa(charMa - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>MA: {charMa}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charMa <= 9) {
+                    setMa(charMa + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.columnContainers}>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (charBody > 0) {
+                    setBody(charBody - 1);
+                    setPoints(skillPoints + 1);
+                  }
+                }}
+              >
+                -
+              </button>
+              <h3 className={styles.label}>Body: {charBody}</h3>
+              <button
+                className={styles.buttons}
+                onClick={() => {
+                  if (skillPoints > 0 && charBody <= 9) {
+                    setBody(charBody + 1);
+                    setPoints(skillPoints - 1);
+                  }
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
-        </div>
-        <div className={styles.columns}>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charRef > 0) {
-                  setRef(charRef - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>REF: {charRef}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charRef <= 9) {
-                  setRef(charRef + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
+          <div className={styles.title}>
+            <input type="submit" />
           </div>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charLuck > 0) {
-                  setLuck(charLuck - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>LUCK: {charLuck}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charLuck <= 9) {
-                  setLuck(charLuck + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
-          </div>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charCool > 0) {
-                  setCool(charCool - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>Cool: {charCool}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charCool <= 9) {
-                  setCool(charCool + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
-          </div>
-        </div>
-        <div className={styles.columns}>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charTech > 0) {
-                  setTech(charTech - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>TECH: {charTech}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charTech <= 9) {
-                  setTech(charTech + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
-          </div>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charMa > 0) {
-                  setMa(charMa - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>MA: {charMa}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charMa <= 9) {
-                  setMa(charMa + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
-          </div>
-          <div className={styles.columnContainers}>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (charBody > 0) {
-                  setBody(charBody - 1);
-                  setPoints(skillPoints + 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <h3 className={styles.label}>Body: {charBody}</h3>
-            <button
-              className={styles.buttons}
-              onClick={() => {
-                if (skillPoints > 0 && charBody <= 9) {
-                  setBody(charBody + 1);
-                  setPoints(skillPoints - 1);
-                }
-              }}
-            >
-              +
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );
