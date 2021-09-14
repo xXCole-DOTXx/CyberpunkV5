@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
-import { css } from '@emotion/react';
 import { Steps, Step } from 'react-step-builder';
 import SpecialAbilities from '../Skills/SpecialAbilities';
 import AttrPage from '../Skills/AttrPage';

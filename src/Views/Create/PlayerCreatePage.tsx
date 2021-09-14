@@ -9,25 +9,37 @@ import { config } from '../../config';
 type FormData = {
   handle: string;
   role: string;
-  avatar: File;
+  avatar: string;
 };
 
 const ReactS3Client = new S3(config);
 
 function PlayerCreatePage() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-  const navigate = useNavigate();
-
   const onSubmit = (data: FormData) => {
     console.log(data);
-    ReactS3Client.uploadFile(data.avatar, data.handle + Date.now())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
+    // ReactS3Client.uploadFile(data.avatar, data.handle + Date.now())
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.error(err));
+    // fetch('https://localhost:44326/api/Players/post', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     handle: data.handle,
+    //     role: data.role,
+    //     avatar: data.avatar,
+    //   }),
+    // }).then(() => navigate('../Stats'));
     navigate('../Stats');
   };
 
