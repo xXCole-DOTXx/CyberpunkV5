@@ -9,7 +9,7 @@ import { config } from '../../config';
 type FormData = {
   handle: string;
   role: string;
-  avatar: File;
+  avatar: FileList;
 };
 
 const ReactS3Client = new S3(config);
@@ -24,10 +24,18 @@ function PlayerCreatePage() {
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    console.log(data.avatar);
-    console.log(data.avatar.name);
-    ReactS3Client.uploadFile(data.avatar, data.handle + Date.now())
+    var avatarName = data.avatar[0].name;
+    var postedName = data.avatar[0].name;
+    var imgType = data.avatar[0].name.substr(data.avatar[0].name.length - 3);
+    if (imgType == 'jpg') {
+      postedName = avatarName.substring(0, avatarName.length - 4);
+      avatarName = avatarName.replace('jpg', 'jpeg');
+    } else {
+      postedName = postedName.substring(0, postedName.length - 4);
+    }
+    console.log(avatarName);
+    console.log(postedName);
+    ReactS3Client.uploadFile(data.avatar[0], postedName)
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
     fetch('https://localhost:44326/api/Players/post', {
@@ -39,7 +47,7 @@ function PlayerCreatePage() {
       body: JSON.stringify({
         handle: data.handle,
         role: data.role,
-        avatar: data.avatar,
+        avatar: avatarName,
       }),
     }).then(() => navigate('../Stats'));
   };
@@ -78,7 +86,11 @@ function PlayerCreatePage() {
             </select>
           </div>
           <div className={styles.avatar}>
-            <input type="file" {...register('avatar')} />
+            <input
+              type="file"
+              {...register('avatar')}
+              accept="image/png, image/gif, image/jpeg"
+            />
           </div>
           <div className={styles.avatar}>
             <input type="submit" />
