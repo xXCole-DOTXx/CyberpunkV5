@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './styles.module.css';
 import { useNavigate } from 'react-router';
@@ -24,20 +23,34 @@ function PlayerCreatePage() {
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    var avatarName = data.avatar[0].name;
-    var postedName = data.avatar[0].name;
-    var imgType = data.avatar[0].name.substr(data.avatar[0].name.length - 3);
-    if (imgType == 'jpg') {
-      postedName = avatarName.substring(0, avatarName.length - 4);
-      avatarName = avatarName.replace('jpg', 'jpeg');
+    var avatarName = null;
+    var postedName = null;
+    if (data.avatar[0]?.name == null) {
+      avatarName = null;
+      postedName = null;
     } else {
-      postedName = postedName.substring(0, postedName.length - 4);
+      avatarName = data.avatar[0]?.name;
+      postedName = data.avatar[0]?.name;
     }
-    console.log(avatarName);
-    console.log(postedName);
-    ReactS3Client.uploadFile(data.avatar[0], postedName)
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
+    var imgType = data.avatar[0]?.name.substr(data.avatar[0]?.name.length - 3);
+    if (imgType === 'jpg') {
+      postedName = avatarName?.substring(0, avatarName.length - 4);
+      avatarName = avatarName?.replace('jpg', 'jpeg');
+    } else {
+      postedName = postedName?.substring(0, postedName.length - 4);
+    }
+    var linkToAvatar = null;
+    if (avatarName == null) {
+      linkToAvatar = null;
+    } else {
+      linkToAvatar =
+        'https://cyberpunkv2.s3.us-east-2.amazonaws.com/avatars/' + avatarName;
+    }
+    if (postedName != null) {
+      ReactS3Client.uploadFile(data.avatar[0], postedName)
+        .then((data) => console.log(data))
+        .catch((err) => console.error(err));
+    }
     fetch('https://localhost:44326/api/Players/post', {
       method: 'POST',
       headers: {
@@ -47,9 +60,16 @@ function PlayerCreatePage() {
       body: JSON.stringify({
         handle: data.handle,
         role: data.role,
-        avatar: avatarName,
+        avatar: linkToAvatar,
       }),
-    }).then(() => navigate('../Stats'));
+    }).then((response) =>
+      console.log(
+        response.json().then((data) =>
+          // eslint-disable-next-line no-template-curly-in-string
+          navigate(`../Stats/${data.id}`),
+        ),
+      ),
+    );
   };
 
   return (

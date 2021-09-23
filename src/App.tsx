@@ -32,8 +32,8 @@ function App() {
           <Route path="Players" element={<PlayersPage />} />
           <Route path="Player/:id" element={<PlayerPage />} />
           <Route path="Create" element={<PlayerCreatePage />} />
-          <Route path="Stats" element={<StatsPage />} />
-          <Route path="Skills" element={<SkillsPage />} />
+          <Route path="Stats/:userID" element={<StatsPage />} />
+          <Route path="Skills/:userID" element={<SkillsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

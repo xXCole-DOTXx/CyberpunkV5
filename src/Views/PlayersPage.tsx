@@ -127,7 +127,7 @@ function PlayersPage() {
                   `}
                 >
                   <Card.Img
-                    src={pic}
+                    src={data.avatar}
                     alt="No photo found."
                     css={css`
                       margin: 5px 10px 10px 10px;
