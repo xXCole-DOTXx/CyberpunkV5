@@ -4,7 +4,6 @@ import { Page } from './Page';
 import { PageTitle } from './PageTitle';
 import { Card } from 'react-bootstrap';
 import { css } from '@emotion/react';
-import pic from '../assets/samurai.png';
 import { useNavigate } from 'react-router-dom';
 
 function PlayersPage() {

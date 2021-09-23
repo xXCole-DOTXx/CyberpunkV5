@@ -16,12 +16,13 @@ function StatsPage() {
   const [charBody, setBody] = useState(0);
   const [charEmp, setEmp] = useState(0);
   const navigate = useNavigate();
-  let { userID } = useParams();
+  let { userID, role } = useParams();
 
   const onSubmit = () => {
     var charLift = 40 * charBody;
     var charRun = 3 * charMa;
     var charLeap = charRun / 4;
+    console.log(charMa);
     fetch('https://localhost:44326/api/Stats/post', {
       method: 'POST',
       headers: {
@@ -43,7 +44,7 @@ function StatsPage() {
         leap: charLeap,
         lift: charLift,
       }),
-    }).then(() => navigate(`../../Skills/${userID}`));
+    }).then(() => navigate(`/Skills/${userID}/${role}`));
   };
   return (
     <div className={styles.container}>

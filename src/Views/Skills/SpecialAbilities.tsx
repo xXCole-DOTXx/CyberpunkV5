@@ -5,7 +5,7 @@ function SpecialAbilities(props: any) {
   const roles = ['Fixer', 'Techie', 'Cop'];
   var item = roles[Math.floor(Math.random() * roles.length)];
   console.log(item);
-  if (item == 'Fixer') {
+  if (item === 'Fixer') {
     return (
       <div className={styles.container}>
         <div className={styles.body}>
@@ -22,7 +22,7 @@ function SpecialAbilities(props: any) {
         </div>
       </div>
     );
-  } else if (item == 'Cop') {
+  } else if (item === 'Cop') {
     return (
       <div className={styles.container}>
         <div className={styles.body}>

@@ -66,7 +66,7 @@ function PlayerCreatePage() {
       console.log(
         response.json().then((data) =>
           // eslint-disable-next-line no-template-curly-in-string
-          navigate(`../Stats/${data.id}`),
+          navigate(`../Stats/${data.id}/${data.role}`),
         ),
       ),
     );
