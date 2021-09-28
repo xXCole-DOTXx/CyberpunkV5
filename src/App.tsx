@@ -10,9 +10,10 @@ import PlayersPage from './Views/PlayersPage';
 import PlayerCreatePage from './Views/Create/PlayerCreatePage';
 import NotFoundPage from './Views/NotFoundPage';
 import StatsPage from './Views/Stats/Stats';
-// import SpecialAbilities from './Views/Skills/SpecialAbilities';
+import SpecialAbilities from './Views/SpecialAbilities/SpecialAbilities';
 // import AttrPage from './Views/Skills/AttrPage';
 // import CoolPage from './Views/Skills/CoolPage';
+//import BodyPage from './Views/Skills/BodyPage';
 import SkillsPage from './Views/Skills/Skills';
 
 function App() {
@@ -32,7 +33,11 @@ function App() {
           <Route path="Player/:id" element={<PlayerPage />} />
           <Route path="Create" element={<PlayerCreatePage />} />
           <Route path="Stats/:userID/:role" element={<StatsPage />} />
-          <Route path="Skills/:userID/:role" element={<SkillsPage />} />
+          <Route
+            path="SpecialAbilities/:userID/:role"
+            element={<SpecialAbilities />}
+          />
+          <Route path="Skills/:userID" element={<SkillsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

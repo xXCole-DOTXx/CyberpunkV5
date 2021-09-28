@@ -100,9 +100,11 @@ function PlayerCreatePage() {
               <option value="Netrunner">Netrunner</option>
               <option value="Techie">Techie</option>
               <option value="Media">Media</option>
-              <option value="Cop">Corporate</option>
+              <option value="Cop">Cop</option>
+              <option value="Corporate">Corporate</option>
               <option value="Fixer">Fixer</option>
               <option value="Nomad">Nomad</option>
+              <option value="MedTech">Med Tech</option>
             </select>
           </div>
           <div className={styles.avatar}>

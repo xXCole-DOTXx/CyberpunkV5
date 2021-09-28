@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  background: url('../../assets/special.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #404040;
+  width: 35%;
+  height: 100vh;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.columnContainers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  color: #d4ffc7;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  height: 20px;
+  margin-top: 20px;
+  color: #d4ffc7;
+  background: darkslategrey;
+}

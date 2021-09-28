@@ -44,7 +44,7 @@ function StatsPage() {
         leap: charLeap,
         lift: charLift,
       }),
-    }).then(() => navigate(`/Skills/${userID}/${role}`));
+    }).then(() => navigate(`/SpecialAbilities/${userID}/${role}`));
   };
   return (
     <div className={styles.container}>

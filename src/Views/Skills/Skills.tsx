@@ -1,6 +1,6 @@
 import { Steps, Step } from 'react-step-builder';
-import SpecialAbilities from '../Skills/SpecialAbilities';
 import AttrPage from '../Skills/AttrPage';
+import BodyPage from '../Skills/BodyPage';
 import CoolPage from '../Skills/CoolPage';
 import styles from './StyleSheets/Skills.module.css';
 
@@ -8,8 +8,8 @@ function SkillsPage() {
   return (
     <div className={styles.container}>
       <Steps>
-        <Step component={SpecialAbilities} />
         <Step component={AttrPage} />
+        <Step component={BodyPage} />
         <Step component={CoolPage} />
       </Steps>
     </div>
